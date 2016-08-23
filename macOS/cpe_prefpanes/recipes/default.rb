@@ -11,7 +11,7 @@ prefpanes_prefs = {}
 
 ruby_block 'prefpanes_prefs' do
   block do
-    prefpanes_prefs = node['cpe_prefpanes'].reject { |v| v.nil? }
+    prefpanes_prefs = node['cpe_prefpanes'].reject { nil? }
     unless prefpanes_prefs.empty?
       organization = node['organization'] ? node['organization'] : 'GitHub'
       prefix = node['cpe_profiles']['prefix']
