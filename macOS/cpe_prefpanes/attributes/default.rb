@@ -8,10 +8,4 @@
 #
 
 # Disable Preference Panes from System Preferences.
-default['cpe_prefpanes'] = nil
-
-#[
-  # 'com.apple.preferences.icloud',
-  # 'com.apple.preferences.internetaccounts',
-  # 'com.apple.preferences.configurationprofiles'
-#]
+default['cpe_prefpanes'] = []
