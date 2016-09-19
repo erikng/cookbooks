@@ -8,23 +8,23 @@
 #
 
 # Path Application Whitelist/Blacklist
-default['cpe_applicationaccess.new']['pathBlackList'] = nil
-default['cpe_applicationaccess.new']['pathWhiteList'] = nil
-default['cpe_applicationaccess.new']['whiteList'] = nil
+default['cpe_applicationaccess']['lists']['pathBlackList'] = nil
+default['cpe_applicationaccess']['lists']['pathWhiteList'] = nil
+default['cpe_applicationaccess']['lists']['whiteList'] = nil
 
 # Application Access Features
-default['cpe_applicationaccess']['allowAutoUnlock'] = nil
-default['cpe_applicationaccess']['allowCamera'] = nil
-default['cpe_applicationaccess']['allowCloudAddressBook'] = nil
-default['cpe_applicationaccess']['allowCloudBTMM'] = nil
-default['cpe_applicationaccess']['allowCloudDocumentSync'] = nil
-default['cpe_applicationaccess']['allowCloudFMM'] = nil
-default['cpe_applicationaccess']['allowCloudKeychainSync'] = nil
-default['cpe_applicationaccess']['allowCloudMail'] = nil
-default['cpe_applicationaccess']['allowCloudCalendar'] = nil
-default['cpe_applicationaccess']['allowCloudReminders'] = nil
-default['cpe_applicationaccess']['allowCloudBookmarks'] = nil
-default['cpe_applicationaccess']['allowCloudNotes'] = nil
-default['cpe_applicationaccess']['allowDefinitionLookup'] = nil
-default['cpe_applicationaccess']['allowMusicService'] = nil
-default['cpe_applicationaccess']['allowSpotlightInternetResults'] = nil
+default['cpe_applicationaccess']['features']['allowAutoUnlock'] = nil
+default['cpe_applicationaccess']['features']['allowCamera'] = nil
+default['cpe_applicationaccess']['features']['allowCloudAddressBook'] = nil
+default['cpe_applicationaccess']['features']['allowCloudBTMM'] = nil
+default['cpe_applicationaccess']['features']['allowCloudDocumentSync'] = nil
+default['cpe_applicationaccess']['features']['allowCloudFMM'] = nil
+default['cpe_applicationaccess']['features']['allowCloudKeychainSync'] = nil
+default['cpe_applicationaccess']['features']['allowCloudMail'] = nil
+default['cpe_applicationaccess']['features']['allowCloudCalendar'] = nil
+default['cpe_applicationaccess']['features']['allowCloudReminders'] = nil
+default['cpe_applicationaccess']['features']['allowCloudBookmarks'] = nil
+default['cpe_applicationaccess']['features']['allowCloudNotes'] = nil
+default['cpe_applicationaccess']['features']['allowDefinitionLookup'] = nil
+default['cpe_applicationaccess']['features']['allowMusicService'] = nil
+default['cpe_applicationaccess']['features']['allowSpotlightInternetResults'] = nil
