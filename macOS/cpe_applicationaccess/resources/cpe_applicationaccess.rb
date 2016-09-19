@@ -71,35 +71,42 @@ action :run do
   end
 
   aa_prefs_list = {
-    'allowAutoUnlock' => node['cpe_applicationaccess']['allowAutoUnlock'],
-    'allowCamera' => node['cpe_applicationaccess']['allowCamera'],
+    'allowAutoUnlock' =>
+      node['cpe_applicationaccess']['features']['allowAutoUnlock'],
+    'allowCamera' =>
+      node['cpe_applicationaccess']['features']['allowCamera'],
     'allowCloudAddressBook' =>
-        node['cpe_applicationaccess']['allowCloudAddressBook'],
-    'allowCloudBTMM' => node['cpe_applicationaccess']['allowCloudBTMM'],
+      node['cpe_applicationaccess']['features']['allowCloudAddressBook'],
+    'allowCloudBTMM' =>
+      node['cpe_applicationaccess']['features']['allowCloudBTMM'],
     'allowCloudDocumentSync' =>
-        node['cpe_applicationaccess']['allowCloudDocumentSync'],
-    'allowCloudFMM' => node['cpe_applicationaccess']['allowCloudFMM'],
+      node['cpe_applicationaccess']['features']['allowCloudDocumentSync'],
+    'allowCloudFMM' =>
+      node['cpe_applicationaccess']['features']['allowCloudFMM'],
     'allowCloudKeychainSync' =>
-        node['cpe_applicationaccess']['allowCloudKeychainSync'],
-    'allowCloudMail' => node['cpe_applicationaccess']['allowCloudMail'],
+      node['cpe_applicationaccess']['features']['allowCloudKeychainSync'],
+    'allowCloudMail' =>
+      node['cpe_applicationaccess']['features']['allowCloudMail'],
     'allowCloudCalendar' =>
-        node['cpe_applicationaccess']['allowCloudCalendar'],
+      node['cpe_applicationaccess']['features']['allowCloudCalendar'],
     'allowCloudReminders' =>
-        node['cpe_applicationaccess']['allowCloudReminders'],
+      node['cpe_applicationaccess']['features']['allowCloudReminders'],
     'allowCloudBookmarks' =>
-        node['cpe_applicationaccess']['allowCloudBookmarks'],
-    'allowCloudNotes' => node['cpe_applicationaccess']['allowCloudNotes'],
+      node['cpe_applicationaccess']['features']['allowCloudBookmarks'],
+    'allowCloudNotes' =>
+      node['cpe_applicationaccess']['features']['allowCloudNotes'],
     'allowDefinitionLookup' =>
-        node['cpe_applicationaccess']['allowDefinitionLookup'],
-    'allowMusicService' => node['cpe_applicationaccess']['allowMusicService'],
+      node['cpe_applicationaccess']['features']['allowDefinitionLookup'],
+    'allowMusicService' =>
+      node['cpe_applicationaccess']['features']['allowMusicService'],
     'allowSpotlightInternetResults' =>
-        node['cpe_applicationaccess']['allowSpotlightInternetResults']
+      node['cpe_applicationaccess']['features']['allowSpotlightInternetResults']
   }
 
   aan_prefs_list = {
-    'pathBlackList' => node['cpe_applicationaccess.new']['pathBlackList'],
-    'pathWhiteList' => node['cpe_applicationaccess.new']['pathWhiteList'],
-    'whiteList' => node['cpe_applicationaccess.new']['WhiteList']
+    'pathBlackList' => node['cpe_applicationaccess']['lists']['pathBlackList'],
+    'pathWhiteList' => node['cpe_applicationaccess']['lists']['pathWhiteList'],
+    'whiteList' => node['cpe_applicationaccess']['lists']['WhiteList']
   }
 
   # Apply all settings to the profile
