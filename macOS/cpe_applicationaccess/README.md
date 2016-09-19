@@ -1,6 +1,6 @@
 cpe_applicationaccess Cookbook
 =========================
-Install a profile to disable System Preference Panes.
+Install a profile to manage various application settings.
 
 Requirements
 ------------
