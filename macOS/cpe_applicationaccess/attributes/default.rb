@@ -13,7 +13,7 @@ default['cpe_applicationaccess'] = {
   'lists' => {
     'pathBlackList' => nil,
     'pathWhiteList' => nil,
-    'whiteList' => nil,
+    'whiteList' => nil
   },
   # Application Access Features
   'features' => {
@@ -31,6 +31,6 @@ default['cpe_applicationaccess'] = {
     'allowCloudNotes' => nil,
     'allowDefinitionLookup' => nil,
     'allowMusicService' => nil,
-    'allowSpotlightInternetResults' => nil,
-  },
+    'allowSpotlightInternetResults' => nil
+  }
 }
