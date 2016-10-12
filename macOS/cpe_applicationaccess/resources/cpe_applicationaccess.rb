@@ -19,7 +19,7 @@ action :run do
     return
   end
 
-  organization = node['organization'] ? node['organization'] : 'Facebook'
+  organization = node['organization'] ? node['organization'] : 'GitHub'
   prefix = node['cpe_profiles']['prefix']
   aa_profile = {
     'PayloadIdentifier' => "#{prefix}.applicationaccess",
