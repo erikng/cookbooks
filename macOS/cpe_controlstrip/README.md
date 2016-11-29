@@ -24,7 +24,7 @@ The profile delivers a payload of all keys in `node['cpe_controlstrip']` that ar
 
 The most common use case is for touch bar client machines that you want the lock screen to be configured. You can also use node attributes to dynamically update these fields without writing new code:
 
-Note: You *must* deploy four strings in the array for it to properly apply.
+Note: You can deploy a minimum of zero items (an empty array) up to four items.
 
 The following keys are currently available as of 11/28/2016
 * com.apple.system.brightness
