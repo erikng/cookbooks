@@ -1,6 +1,7 @@
 cpe_setupassistant Cookbook
 =========================
 Install a profile to manage SetupAssistant settings.
+
 Requirements
 ------------
 Mac OS X
