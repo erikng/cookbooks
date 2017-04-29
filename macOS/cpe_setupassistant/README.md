@@ -1,9 +1,7 @@
 cpe_setupassistant Cookbook
 =========================
 Install a profile to manage SetupAssistant settings.
-
-Requirements:
-[cpe_profiles](https://github.com/facebook/IT-CPE/tree/master/chef/cookbooks/cpe_profiles)
+Requirements
 ------------
 Mac OS X
 
@@ -11,6 +9,7 @@ Attributes
 ----------
 * node['cpe_setupassistant']
 * node['cpe_setupassistant']['DidSeeCloudSetup']
+* node['cpe_setupassistant']['DidSeeSiriSetup']
 * node['cpe_setupassistant']['LastSeenBuddyBuildVersion']
 * node['cpe_setupassistant']['LastSeenCloudProductVersion']
 * node['cpe_setupassistant']['RunNonInteractive']
