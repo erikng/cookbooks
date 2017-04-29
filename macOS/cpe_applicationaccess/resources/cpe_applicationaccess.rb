@@ -5,36 +5,20 @@
 # vim: syntax=ruby:expandtab:shiftwidth=2:softtabstop=2:tabstop=2
 #
 # Written by Erik Gomez
+# Modified by Nick McSpadden
 #
 
 resource_name :cpe_applicationaccess
 default_action :run
 
 action :run do
-  aa_prefs = node['cpe_applicationaccess'].reject { |_k, v| v.nil? }
-  aan_prefs = node['cpe_applicationaccess.new'].reject { |_k, v| v.nil? }
-  aa_prefs_list = {
-    'allowAutoUnlock' => {},
-    'allowCamera' => {},
-    'allowCloudAddressBook' => {},
-    'allowCloudBTMM' => {},
-    'allowCloudDocumentSync' => {},
-    'allowCloudFMM' => {},
-    'allowCloudKeychainSync' => {},
-    'allowCloudMail' => {},
-    'allowCloudCalendar' => {},
-    'allowCloudReminders' => {},
-    'allowCloudBookmarks' => {},
-    'allowCloudNotes' => {},
-    'allowDefinitionLookup' => {},
-    'allowMusicService' => {},
-    'allowSpotlightInternetResults' => {}
-  }
-  aan_prefs_list = {
-    'pathBlackList' => {},
-    'pathWhiteList' => {},
-    'whiteList' => {}
-  }
+  aa_prefs = node['cpe_applicationaccess']['features'].reject { |_k, v| v.nil? }
+  aan_prefs = node['cpe_applicationaccess']['lists'].reject { |_k, v| v.nil? }
+  if aa_prefs.empty? && aan_prefs.empty?
+    Chef::Log.info("#{cookbook_name}: No prefs found.")
+    return
+  end
+
   organization = node['organization'] ? node['organization'] : 'GitHub'
   prefix = node['cpe_profiles']['prefix']
   aa_profile = {
@@ -46,7 +30,7 @@ action :run do
     'PayloadOrganization' => organization,
     'PayloadVersion' => 1,
     'PayloadDisplayName' => 'Application Restrictions',
-    'PayloadContent' => []
+    'PayloadContent' => [],
   }
   unless aa_prefs.empty?
     aa_profile['PayloadContent'].push(
@@ -57,7 +41,13 @@ action :run do
       'PayloadEnabled' => true,
       'PayloadDisplayName' => 'Application Restrictions',
     )
+
+    aa_prefs.keys.each do |key|
+      next if aa_prefs[key].nil?
+      aa_profile['PayloadContent'][0][key] = aa_prefs[key]
+    end
   end
+
   unless aan_prefs.empty?
     aa_profile['PayloadContent'].push(
       'PayloadType' => 'com.apple.applicationaccess.new',
@@ -68,63 +58,10 @@ action :run do
       'PayloadDisplayName' => 'Application Restrictions New',
       'familyControlsEnabled' => true,
     )
-  end
 
-  aa_prefs_list = {
-    'allowAutoUnlock' =>
-      node['cpe_applicationaccess']['features']['allowAutoUnlock'],
-    'allowCamera' =>
-      node['cpe_applicationaccess']['features']['allowCamera'],
-    'allowCloudAddressBook' =>
-      node['cpe_applicationaccess']['features']['allowCloudAddressBook'],
-    'allowCloudBTMM' =>
-      node['cpe_applicationaccess']['features']['allowCloudBTMM'],
-    'allowCloudDocumentSync' =>
-      node['cpe_applicationaccess']['features']['allowCloudDocumentSync'],
-    'allowCloudFMM' =>
-      node['cpe_applicationaccess']['features']['allowCloudFMM'],
-    'allowCloudKeychainSync' =>
-      node['cpe_applicationaccess']['features']['allowCloudKeychainSync'],
-    'allowCloudMail' =>
-      node['cpe_applicationaccess']['features']['allowCloudMail'],
-    'allowCloudCalendar' =>
-      node['cpe_applicationaccess']['features']['allowCloudCalendar'],
-    'allowCloudReminders' =>
-      node['cpe_applicationaccess']['features']['allowCloudReminders'],
-    'allowCloudBookmarks' =>
-      node['cpe_applicationaccess']['features']['allowCloudBookmarks'],
-    'allowCloudNotes' =>
-      node['cpe_applicationaccess']['features']['allowCloudNotes'],
-    'allowDefinitionLookup' =>
-      node['cpe_applicationaccess']['features']['allowDefinitionLookup'],
-    'allowMusicService' =>
-      node['cpe_applicationaccess']['features']['allowMusicService'],
-    'allowSpotlightInternetResults' =>
-      node['cpe_applicationaccess']['features']['allowSpotlightInternetResults']
-  }
-
-  aan_prefs_list = {
-    'pathBlackList' => node['cpe_applicationaccess']['lists']['pathBlackList'],
-    'pathWhiteList' => node['cpe_applicationaccess']['lists']['pathWhiteList'],
-    'whiteList' => node['cpe_applicationaccess']['lists']['WhiteList']
-  }
-
-  # Apply all settings to the profile
-  aa_prefs_list.keys.each do |type|
-    next if aa_prefs_list[type].nil?
-    aa_profile['PayloadContent'][0]["#{type}"] = aa_prefs_list[type]
-  end
-
-  # Don't add applicationaccess.new settings unless attributes exist
-  unless aan_prefs.empty?
-    aan_prefs_list.keys.each do |type|
-      next if aan_prefs_list[type].nil?
-      # move the payload up one if no attributes exist for aa_prefs
-      if aa_prefs.empty?
-        aa_profile['PayloadContent'][0]["#{type}"] = aan_prefs_list[type]
-      else
-        aa_profile['PayloadContent'][1]["#{type}"] = aan_prefs_list[type]
-      end
+    aan_prefs.keys.each do |key|
+      next if aan_prefs[key].nil?
+      aa_profile['PayloadContent'][-1][key] = aan_prefs[key]
     end
   end
 
