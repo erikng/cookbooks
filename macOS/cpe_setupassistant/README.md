@@ -42,3 +42,8 @@ The most common use case is for client machines that you want SetupAssistant to 
     node.default['cpe_setupassistant']['LastSeenCloudProductVersion'] =
       node['platform_version']
     node.default['cpe_setupassistant']['RunNonInteractive'] = true
+    
+    # Disable SetupAssistant FileVault 10.12.5
+    node.default['cpe_setupassistant']['DidSeeiCloudLoginForStorageServices'] = true
+    node.default['cpe_setupassistant']['LastSeeniCloudStorageServicesProductVersion'] = node['platform_version']
+    
