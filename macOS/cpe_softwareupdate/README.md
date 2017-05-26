@@ -21,14 +21,19 @@ The profile delivers a payload for the above keys in `node['cpe_softwareupdate']
 
 You can pass any other values that are respected by either preference domain.
 
-For example, you could tweak the above values
+For example, you could tweak the below values
+
+```ruby
     # Allow beta access
     node.default['cpe_softwareupdate']['su']['AllowPreReleaseInstallation'] = true
     # Use internal SUS
     node.default['cpe_softwareupdate']['su']['CatalogURL'] = 'https://sus.domain.tld'
+```
 
 To block automatic updates entirely
+```ruby
     node.default['cpe_softwareupdate']['su']['AutomaticDownload'] = false
     node.default['cpe_softwareupdate']['su']['AutomaticCheckEnabled'] = false
     node.default['cpe_softwareupdate']['commerce']['AutoUpdate'] = false
     node.default['cpe_softwareupdate']['commerce']['AutoUpdateRestartRequired'] = false
+```
