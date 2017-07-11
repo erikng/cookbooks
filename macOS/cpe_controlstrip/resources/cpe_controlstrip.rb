@@ -11,7 +11,7 @@ resource_name :cpe_controlstrip
 default_action :run
 
 action :run do
-  cs_prefs = node['cpe_controlstrip']['features'].reject { |_k, v| v.nil? }
+  cs_prefs = node['cpe_controlstrip'].reject { |_k, v| v.nil? }
   if cs_prefs.empty?
     Chef::Log.info("#{cookbook_name}: No prefs found.")
     return
